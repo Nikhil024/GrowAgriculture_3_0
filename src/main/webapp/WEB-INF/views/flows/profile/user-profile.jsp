@@ -11,6 +11,25 @@
         Profile
     </title>
     <jsp:include page="../../headerCSS.jsp"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+   <script type="text/javascript">
+    var sessionID = "3cf948db-0456-11e8-a328-0200cd936042";
+    /*  $(document).ready(function(){
+            $.ajax({  
+                type : "POST",   
+                url : "${pageContext.request.contextPath}/sendOtp",   
+                data : "phoneNumber=${user.phoneNumber}",  
+                success : function(response) {  
+                 sessionID = response[1];
+                },  
+                error : function(e) {  
+                 console.log('Error: ' + e);   
+                }  
+               });  
+    }); */
+    
+    </script>
+    
 </head>
 
 <body class="profile-page ">
@@ -26,7 +45,7 @@
                                 <img src="../assets/img/faces/christian.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
                             </div>
                             <div class="name">
-                                <h3 class="title">Christian Louboutin</h3>
+                                <h3 class="title">${userDetailsModel.firstName}</h3>
                                 <h6>Designer</h6>
                             </div>
                         </div>
@@ -60,7 +79,17 @@
                             </ul>
                         </div>
                         <!-- End Profile Tabs -->
-                        <form:form class="form" method="post" modelAttribute="userDetails">
+                        <form:form class="form" method="post" modelAttribute="userDetailsModel">
+	                        
+	                        <div class="form-group">
+	                            <div class="input-group">
+	                            	<span class="input-group-addon">
+	                                	<i class="material-icons">contact_phone</i>
+	                                </span>
+	                                <form:input type="text" path="otpValue" value="" class="form-control" placeholder="Enter OTP recieved on your phone"/>
+	                            </div>
+	                            <form:errors path="otpValue" cssClass="text-danger" element="p"/>
+	                         </div>
 	                        
 	                        <div class="form-group">
 	                            <div class="input-group">
@@ -113,23 +142,13 @@
 	                            <form:errors path="aboutMe" cssClass="text-danger" element="p"/>
 	                         </div>
 	                         
-	                          <div class="form-group">
-	                            <div class="input-group">
-	                            	<span class="input-group-addon">
-	                                	<i class="material-icons">contact_phone</i>
-	                                </span>
-	                                <form:input type="text" path="otpValue" value="" class="form-control" placeholder="OTP"/>
-	                            </div>
-	                            <form:errors path="otpValue" cssClass="text-danger" element="p"/>
-	                         </div>
-							
 							 <div class="form-group">
                              	<label for="dateOfBirth" class="label-control">Date Of Birth</label>
                                 <form:input type="text" path="dateOfBirth" class="form-control datepicker" value="10/10/2016" placeholder="DD/MM/YYYY"/>
                                 <form:errors path="dateOfBirth" cssClass="text-danger" element="p"/>
                              </div>
 							<div class="text-center">
-                            	<input type="submit" name="_eventId_success" value="Get Started" class="btn btn-primary btn-round">
+                            	<input type="submit" name="_eventId_submit" value="Get Started" class="btn btn-primary btn-round">
                             </div>
 								                         
                         </form:form>

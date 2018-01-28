@@ -116,6 +116,9 @@
                                                 <a href="#something">terms and conditions</a>.
                                             </label>
                                         </div>
+                                        
+                                        <form:hidden path="role" value="farmer"/>
+                                        
                                         <div class="text-center">
                                             <input type="submit" name="_eventId_profile" value="Get Started" class="btn btn-primary btn-round">
                                         </div>

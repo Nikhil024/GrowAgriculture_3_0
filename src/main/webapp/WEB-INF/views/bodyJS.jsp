@@ -35,6 +35,33 @@
         materialKitDemo.initFormExtendedDatetimepickers();
     });
     
+    var abc = "<span class='form-control-feedback'><i class='material-icons'>done</i></span>";
+    
+    $("#lastName").click(function(){
+    	console.log("sessionID:: "+sessionID);
+    	if($("#otpValue").val() != null && sessionID != null){
+    		if($("#otpValue").val().toString().length > 3){
+    			otpValue = $("#otpValue").val();
+    			 $.ajax({  
+    	                type : "POST",   
+    	                url : "${pageContext.request.contextPath}/checkOtp",   
+    	                data : "otpValue="+otpValue+",sessionID="+sessionID,  
+    	                success : function(response) { 
+    	                	alert(response[1] == "OTP Matched");
+    	                 	if(response[1] == "OTP Matched"){
+    	                 		var htmlCode = $("#otpValue").parent().parent().html();
+    	            			$("#otpValue").parent().parent().addClass('has-success');
+    	            			$("#otpValue").parent().parent().html(htmlCode + abc);
+    	                 	}   
+    	                },  
+    	                error : function(e) {  
+    	                	alert("eroro");
+    	                 console.log('Error: ' + e[0]);   
+    	                }  
+    	               });  
+    		}
+    	}
+    });
     
         $(document).ready(function() {
             $('#twitter').sharrre({

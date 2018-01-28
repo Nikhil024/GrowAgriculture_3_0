@@ -37,7 +37,11 @@
 	
 	<!-- Webflow configuration -->
 	
-	<wf:flow-executor id="flowExecutor" flow-registry="flowRegistry" />
+	<wf:flow-executor id="flowExecutor" flow-registry="flowRegistry">
+		<!-- <wf:flow-execution-attributes>
+			<wf:always-redirect-on-pause value="false"/>
+		</wf:flow-execution-attributes> -->
+	</wf:flow-executor>
 	
 	<wf:flow-registry id="flowRegistry" base-path="/WEB-INF/views/flows" flow-builder-services="flowBuilderServices">
 		<wf:flow-location-pattern value="/**/*-flow.xml"/>		

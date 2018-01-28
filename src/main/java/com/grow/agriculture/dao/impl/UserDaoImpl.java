@@ -1,11 +1,14 @@
 package com.grow.agriculture.dao.impl;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.grow.agriculture.dao.UserDao;
 import com.grow.agriculture.dto.User;
 
+@Transactional
 public class UserDaoImpl implements UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
