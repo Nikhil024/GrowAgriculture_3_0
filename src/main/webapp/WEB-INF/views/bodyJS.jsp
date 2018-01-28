@@ -24,13 +24,18 @@
     <script src="<spring:url value="/resources/assets-for-demo/js/material-kit-demo.js"/>"></script>
     <!-- Plugins for presentation and navigation  -->
     <script src="<spring:url value="/resources/assets-for-demo/js/modernizr.js"/>"></script>
-    <script src="<spring:url value="/resources/assets-for-demo/js/vertical-nav.js"/>assets-for-demo/js/vertical-nav.js"></script>
+    <script src="<spring:url value="/resources/assets-for-demo/js/vertical-nav.js"/>"></script>
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2Yno10-YTnLjjn_Vtk0V8cdcY5lC4plU"></script>
     <!-- Sharrre libray -->
     <script src="<spring:url value="/resources/assets-for-demo/js/jquery.sharrre.js"/>">
     </script>
     <script>
+    $(document).ready(function() {
+        materialKitDemo.initFormExtendedDatetimepickers();
+    });
+    
+    
         $(document).ready(function() {
             $('#twitter').sharrre({
                 share: {

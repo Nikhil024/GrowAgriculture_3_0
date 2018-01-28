@@ -9,7 +9,7 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Login &#45; Material Kit PRO by Creative Tim
+       FarmerLogin
     </title>
     <jsp:include page="../../headerCSS.jsp"/>
 </head>
@@ -73,41 +73,7 @@
                 </div>
             </div>
         </div>
-        <footer class="footer">
-            <div class="container">
-                <nav class="float-left">
-                    <ul>
-                        <li>
-                            <a href="http://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://presentation.creative-tim.com">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.creative-tim.com/license">
-                                Licenses
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="copyright float-right">
-                    &#xA9;
-                    <script>
-                        document.write(new Date().getFullYear())
-                    </script>, made with <i class="fa fa-heart heart"></i> by
-                    <a href="http://www.creative-tim.com" target="_blank">Creative Tim</a>
-                </div>
-            </div>
-        </footer>
+        <jsp:include page="../../footer.jsp"/>
     </div>
     <jsp:include page="../../bodyJS.jsp"/>
     <noscript>

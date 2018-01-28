@@ -19,7 +19,9 @@ public class RegisterPageComponentController {
 	private static final Logger log = LoggerFactory.getLogger(RegisterPageComponentController.class);
 	private static final String VIEW_NAME ="registerPageComponent";
 	private static final String USER_REGISTER = "userRegister";
-	@RequestMapping(value = "/register",method=RequestMethod.GET)
+	
+	
+	@RequestMapping(value = "/farmerRegister",method=RequestMethod.GET)
 	public ModelAndView farmerRegisterGetMethod(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView(VIEW_NAME);
 		User user = new User();
@@ -29,7 +31,7 @@ public class RegisterPageComponentController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/register", method=RequestMethod.POST)
+	/*@RequestMapping(value = "/register", method=RequestMethod.POST)
 	public ModelAndView farmerRegisterPostMethod(@Valid @ModelAttribute("user") User user,BindingResult result) {
 		if(result.hasErrors()) {
 			log.info("Has error");
@@ -37,7 +39,7 @@ public class RegisterPageComponentController {
 		ModelAndView mav = new ModelAndView(VIEW_NAME);
 		log.info(user.toString());
 		return mav;
-	}
+	}*/
 	
 	
 	

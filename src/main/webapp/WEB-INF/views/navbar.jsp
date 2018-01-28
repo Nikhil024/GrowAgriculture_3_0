@@ -31,10 +31,10 @@
                             <i class="material-icons">view_day</i> Register
                         </a>
                         <div class="dropdown-menu dropdown-with-icons">
-                            <a href="<spring:url value="/register"/>" class="dropdown-item">
+                            <a href="<spring:url value="/register/farmerRegister"/>" class="dropdown-item">
                                 <i class="material-icons">dns</i> Farmer Register
                             </a>
-                            <a href="<spring:url value="/register/buyerRegister"/>" class="dropdown-item">
+                            <a href="<spring:url value="/register"/>" class="dropdown-item">
                                 <i class="material-icons">build</i> Buyer Register
                             </a>
                         </div>

@@ -28,6 +28,9 @@ public class User implements Serializable{
 	private int id;
 	
 	@NotBlank(message = "Please enter the Phone number")
+	private String name;
+	
+	@NotBlank(message = "Please enter the Phone number")
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	
@@ -58,6 +61,14 @@ public class User implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPhoneNumber() {
@@ -118,8 +129,8 @@ public class User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", phoneNumber=" + phoneNumber + ", password=" + password + ", confirmPassword="
-				+ confirmPassword + ", role=" + role + ", otpVerified=" + otpVerified + ", createdOn=" + createdOn
-				+ ", lastUpdatedOn=" + lastUpdatedOn + "]";
+		return "User [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", password=" + password
+				+ ", confirmPassword=" + confirmPassword + ", role=" + role + ", otpVerified=" + otpVerified
+				+ ", createdOn=" + createdOn + ", lastUpdatedOn=" + lastUpdatedOn + "]";
 	}
 }

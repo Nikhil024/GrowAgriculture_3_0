@@ -33,7 +33,7 @@ public class UserDetails implements Serializable{
 	
 	private String address;
 	private String city;
-	private long postalCode;
+	private String postalCode;
 	private String aboutMe;
 	
 	@Temporal(TemporalType.DATE)
@@ -89,11 +89,11 @@ public class UserDetails implements Serializable{
 		this.city = city;
 	}
 
-	public long getPostalCode() {
+	public String getPostalCode() {
 		return postalCode;
 	}
 
-	public void setPostalCode(long postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 
