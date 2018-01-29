@@ -16,12 +16,17 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.AssertTrue;
 
+import org.hibernate.annotations.Check;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.grow.agriculture.custom.annotations.Matches;
+
 @Entity
 @Table(name = "users")
+@Matches(field="password", verifyField="confirmPassword")
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -41,6 +46,7 @@ public class User implements Serializable{
 	private String password;
 	
 	@Transient
+
 	@Length(min = 6, max = 25, message = "Please enter a password more than 6 letters")
 	private String confirmPassword;
 	
@@ -51,8 +57,7 @@ public class User implements Serializable{
 	private int otpVerified;
 	
 	@Column(name = "created_date")
-	@Temporal(TemporalType.DATE)
-	private Date createdOn;
+	private String createdOn;
 	
 	@Column(name = "last_update")
 	@Temporal(TemporalType.DATE)
@@ -126,11 +131,11 @@ public class User implements Serializable{
 		this.otpVerified = otpVerified;
 	}
 
-	public Date getCreatedOn() {
+	public String getCreatedOn() {
 		return createdOn;
 	}
 
-	public void setCreatedOn(Date createdOn) {
+	public void setCreatedOn(String createdOn) {
 		this.createdOn = createdOn;
 	}
 

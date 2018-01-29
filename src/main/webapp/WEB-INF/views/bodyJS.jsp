@@ -35,30 +35,58 @@
         materialKitDemo.initFormExtendedDatetimepickers();
     });
     
-    var abc = "<span class='form-control-feedback'><i class='material-icons'>done</i></span>";
-    
+    var successTickCode = "<span class='form-control-feedback'><i class='material-icons'>done</i></span>";
+    var failureCrossCode = "<span class='form-control-feedback'><i class='material-icons'>clear</i></span>";
+    var redTect = "<label for='exampleInput3' class='bmd-label-floating'>Error input</label>";
     $("#lastName").click(function(){
-    	console.log("sessionID:: "+sessionID);
     	if($("#otpValue").val() != null && sessionID != null){
     		if($("#otpValue").val().toString().length > 3){
     			otpValue = $("#otpValue").val();
-    			 $.ajax({  
-    	                type : "POST",   
-    	                url : "${pageContext.request.contextPath}/checkOtp",   
-    	                data : "otpValue="+otpValue+",sessionID="+sessionID,  
-    	                success : function(response) { 
-    	                	alert(response[1] == "OTP Matched");
-    	                 	if(response[1] == "OTP Matched"){
-    	                 		var htmlCode = $("#otpValue").parent().parent().html();
-    	            			$("#otpValue").parent().parent().addClass('has-success');
-    	            			$("#otpValue").parent().parent().html(htmlCode + abc);
-    	                 	}   
-    	                },  
-    	                error : function(e) {  
-    	                	alert("eroro");
-    	                 console.log('Error: ' + e[0]);   
-    	                }  
-    	               });  
+	    			if(localStorage.getItem("OtpVerified") != "yes"){
+	    				count = count + 1;
+			    		if(count <= 3){
+	    					$.ajax({  
+			    	                type : "POST",   
+			    	                url : "${pageContext.request.contextPath}/checkOtp",   
+			    	                data : "otpValue="+otpValue+"&sessionID="+sessionID,  
+			    	                success : function(response) { 
+			    	                 	if(response[1] == "OTP Matched"){
+			    	                 		$('.form-control-feedback').remove();
+			    	                 		var htmlCode = $("#otpValue").parent().parent().html();
+			    	            			$("#otpValue").parent().parent().addClass('has-success is-focused');
+			    	            			$("#otpValue").parent().parent().html(htmlCode + successTickCode);
+			    	            			$("#otpValue").val(otpValue);
+			    	            			$("#otpValue").attr("style","background-color: white;pointer-events: none;");
+			    	            			localStorage.setItem("OtpVerified","yes");
+			    	            			localStorage.setItem("OtpValue",otpValue);
+			    	            			$("#otpSessionId").val(sessionID);
+			    	            			$("#otpValue").val(otpValue);
+			    	            			$("#otpRetries").val(count);
+			    	                 	}else{
+			    	                 		$('.form-control-feedback').remove();
+			    	                 		var htmlCode = $("#otpValue").parent().parent().html();
+			    	                 		$("#otpValue").parent().parent().addClass('has-danger is-focused');
+			    	                 		$("#otpValue").parent().parent().html(htmlCode + failureCrossCode);
+			    	                 		$("#otpValue").attr("placeholder", "Re-Enter the OTP recieved on your Phone");
+			    	                 		localStorage.setItem("OtpVerified","no");
+			    	                 	}   
+			    	                },  
+			    	                error : function(response) {  
+			    	                 console.log('Error: ' + JSON.stringify(response));   
+			    	                }  
+			    	               });
+	    					localStorage.setItem("count",count);
+			    		}else{
+			    			$('.form-control-feedback').remove();
+			    			var htmlCode = $("#otpValue").parent().parent().html();
+			         		$("#otpValue").parent().parent().addClass('has-danger is-focused');
+			         		$("#otpValue").parent().parent().html(htmlCode + failureCrossCode);
+			         		$("#otpValue").attr("placeholder", "Max retries exceeded");
+			         		localStorage.setItem("OtpVerified","no");
+			         		$('#profile_submit').attr('disabled','disabled');
+			         		localStorage.setItem("count",count);
+			    		}
+	    		}
     		}
     	}
     });

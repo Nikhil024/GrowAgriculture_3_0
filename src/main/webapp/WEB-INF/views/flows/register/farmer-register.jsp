@@ -9,6 +9,12 @@
         <spring:message code="registerPage.title.name"/>
     </title>
     <jsp:include page="../../headerCSS.jsp"/>
+    <script type="text/javascript">
+    $(document).ready(function() {
+		localStorage.clear(); 
+    });
+    
+    </script>
 </head>
 
 <body class="signup-page ">
@@ -121,6 +127,11 @@
         <jsp:include page="../../footer.jsp"/>
     </div>
     <jsp:include page="../../bodyJS.jsp"/>
+    <script type="text/javascript">
+    $(document).ready(function() {
+    		localStorage.clear();
+    	});
+    </script>
 </body>
 
 </html>

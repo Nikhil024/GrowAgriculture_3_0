@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,23 +12,65 @@
         Profile
     </title>
     <jsp:include page="../../headerCSS.jsp"/>
+    <style type="text/css">
+    
+    	.disabled {
+    		}
+    </style>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
    <script type="text/javascript">
-    var sessionID = "3cf948db-0456-11e8-a328-0200cd936042";
-    /*  $(document).ready(function(){
-            $.ajax({  
-                type : "POST",   
-                url : "${pageContext.request.contextPath}/sendOtp",   
-                data : "phoneNumber=${user.phoneNumber}",  
-                success : function(response) {  
-                 sessionID = response[1];
-                },  
-                error : function(e) {  
-                 console.log('Error: ' + e);   
-                }  
-               });  
-    }); */
+    var sessionID = "";
+    var count = 0;
+    if(localStorage.getItem("count") != null){
+    	count = parseInt(localStorage.getItem("count"));
+    }
     
+      $(document).ready(function(){
+    	  var successTickCode = "<span class='form-control-feedback'><i class='material-icons'>done</i></span>";
+    	if(localStorage.getItem("OtpVerified") != null && localStorage.getItem("OtpValue") != null){
+    		if(localStorage.getItem("OtpVerified") == "yes"){
+    			$('.form-control-feedback').remove();
+	    		var htmlCode = $("#otpValue").parent().parent().html();
+	    		$("#otpValue").parent().parent().html(htmlCode + successTickCode);
+	    		$("#otpValue").parent().parent().addClass('has-success is-focused');
+	    		$("#otpValue").attr("style","background-color: white;pointer-events: none;");
+	    		$("#otpValue").val(localStorage.getItem("OtpValue"));
+    		}
+        }else{
+        	if (localStorage.getItem("OtpVerified") == "no"){
+	        	var htmlCode = $("#otpValue").parent().parent().html();
+	     		$("#otpValue").parent().parent().addClass('has-danger is-focused');
+	     		$("#otpValue").parent().parent().html(htmlCode + failureCrossCode);
+	     		$("#otpValue").attr("placeholder", "Re-Enter the OTP recieved on your Phone");
+	     		localStorage.setItem("OtpVerified","no");
+        	}
+     		count = count + 1;
+        	if(count <= 3){
+	    	  	$.ajax({  
+	                type : "POST",   
+	                url : "${pageContext.request.contextPath}/sendOtp",   
+	                data : "phoneNumber=${user.phoneNumber}",  
+	                success : function(response) {  
+	                 sessionID = response[1];
+	                },  
+	                error : function(e) {  
+	                 console.log('Error: ' + e); 
+	                }  
+	               }); 
+        	}else{
+        		$('.form-control-feedback').remove();
+        		var htmlCode = $("#otpValue").parent().parent().html();
+         		$("#otpValue").parent().parent().addClass('has-danger is-focused');
+         		$("#otpValue").parent().parent().html(htmlCode + failureCrossCode);
+         		$("#otpValue").attr("placeholder", "We are experienceing some problems Try again Later!!");
+         		localStorage.setItem("OtpVerified","no");
+         		$("#otpValue").prop("disabled",true);
+	    		$("#otpValue").attr("style","background-color: white");
+         		$('#profile_submit').attr('disabled','disabled');
+         		$("#otpValue").parent().parent().attr("style","border-color: #f44336");
+        	}
+        }
+    });
     </script>
     
 </head>
@@ -150,7 +193,12 @@
 							<div class="text-center">
                             	<input type="submit" name="_eventId_submit" value="Get Started" class="btn btn-primary btn-round">
                             </div>
-								                         
+								<form:hidden path="createdOn" value="${user.createdOn}"/>
+								<form:errors path="createdOn" cssClass="text-danger" element="p"/>
+								<form:hidden path="otpSessionId" value=""/>   
+								<form:errors path="otpSessionId" cssClass="text-danger" element="p"/> 
+								<form:hidden path="otpRetries" value=""/>   
+								<form:errors path="otpRetries" cssClass="text-danger" element="p"/>                   
                         </form:form>
                     </div>
                 </div>
