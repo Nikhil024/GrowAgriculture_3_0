@@ -1,4 +1,9 @@
+
 package com.grow.agriculture.flow.handlers;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +29,9 @@ public class RegisterHandler {
 
 	
 	public UserDetails addUser(RegisterModel registerModel, User user) {
+		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		Date date = new Date();
+		user.setCreatedOn(dateFormat.format(date));
 		registerModel.setUser(user);
 		UserDetails userDetails = new UserDetails();
 		userDetails.setFirstName(user.getName());
@@ -52,6 +60,15 @@ public class RegisterHandler {
 		return transactionValue;
 	}
 	
-	
+	public String userExists(User user){
+		String userExists = "checkUserExists";
+		String userNotExists = "userNotExists";
+		User chcekUser = userDao.get(user.getPhoneNumber().toString());
+		
+		if(chcekUser != null && chcekUser.getPhoneNumber() != null){
+			return userExists;
+		}
+			return userNotExists;
+	}
 	
 }

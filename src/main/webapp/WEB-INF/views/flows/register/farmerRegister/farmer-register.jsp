@@ -106,9 +106,9 @@
                                             </div>
                                             <form:errors path="confirmPassword" cssClass="text-danger" element="p"/>
                                         </div>
-                                        <div class="form-check">
+                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" value="" checked>
+                                                <input id="termsAndConditionsCheckbox" class="form-check-input" type="checkbox" value="" checked>
                                                 <span class="form-check-sign">
                                                     <span class="check"></span>
                                                 </span>
@@ -116,11 +116,12 @@
                                                 <a href="#something">terms and conditions</a>.
                                             </label>
                                         </div>
-                                        
+                                        <form:errors path="termsAndConditions" cssClass="text-danger" element="p"/>
                                         <form:hidden path="role" value="farmer"/>
+                                        <form:hidden path="termsAndConditions" value=""/>
                                         
                                         <div class="text-center">
-                                            <input type="submit" name="_eventId_profile" value="Get Started" class="btn btn-primary btn-round">
+                                            <input type="submit" id="toProfile" name="_eventId_checkUser" value="Get Started" class="btn btn-primary btn-round">
                                         </div>
                                     </form:form>
                                 </div>

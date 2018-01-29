@@ -31,41 +31,59 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 public class OtpComponentController {
 	private static final Logger log = LoggerFactory.getLogger(OtpComponentController.class);
 
-	@RequestMapping(value = "/sendOtp",method = RequestMethod.POST)     
+	@RequestMapping(value = "/sendOtp", method = RequestMethod.POST)
 	@ResponseBody
 	public List<String> sendOTP(@RequestParam("phoneNumber") String phoneNumber) throws UnirestException {
-		 List<String> jsonList = new ArrayList<String>();
+		List<String> jsonList = new ArrayList<String>();
+
+		 HttpResponse<JsonNode> response = Unirest.get(
+		  "http://2factor.in/API/V1/c9e7df63-4ab4-11e7-94da-0200cd936042/SMS/"+
+		  phoneNumber+"/AUTOGEN") .header("content-type",
+		  "application/x-www-form-urlencoded") .asJson();
+		  
+		  JSONObject jsonObject = response.getBody().getObject(); String status
+		  = jsonObject.getString("Status"); String details =
+		  jsonObject.getString("Details");
 		 
-		 HttpResponse<JsonNode> response = Unirest.get("http://2factor.in/API/V1/c9e7df63-4ab4-11e7-94da-0200cd936042/SMS/"+phoneNumber+"/AUTOGEN")
-				  .header("content-type", "application/x-www-form-urlencoded")
-				  .asJson();
-			 
-		 JSONObject jsonObject = response.getBody().getObject();
-		 String status = jsonObject.getString("Status");
-		 String details = jsonObject.getString("Details");
-		 
-		 jsonList.add(status);
-		 jsonList.add(details);
-		 return jsonList; 
+
+		/*String status = "error";
+		String details = "abc";
+		 */
+		jsonList.add(status);
+		jsonList.add(details);
+		return jsonList;
 	}
-	
-	@RequestMapping(value = "/checkOtp",method = RequestMethod.POST)     
+
+	@RequestMapping(value = "/checkOtp", method = RequestMethod.POST)
 	@ResponseBody
-	public List<String> checkOTP(@RequestParam("otpValue") String otpValue,@RequestParam("sessionID") String sessionID) throws UnirestException {
-		 List<String> jsonList = new ArrayList<String>();
+	public List<String> checkOTP(@RequestParam("otpValue") String otpValue, @RequestParam("sessionID") String sessionID)
+			throws UnirestException {
+		List<String> jsonList = new ArrayList<String>();
+
+		
+		 HttpResponse<JsonNode> response = Unirest.get(
+		  "http://2factor.in/API/V1/c9e7df63-4ab4-11e7-94da-0200cd936042/SMS/VERIFY/"
+		  +sessionID+"/"+otpValue) .header("content-type",
+		  "application/x-www-form-urlencoded") .asJson();
+		  
+		  JSONObject jsonObject = response.getBody().getObject(); String status
+		  = jsonObject.getString("Status"); String details =
+		  jsonObject.getString("Details");
 		 
-		 HttpResponse<JsonNode> response = Unirest.get("https://2factor.in/API/V1/c9e7df63-4ab4-11e7-94da-0200cd936042/SMS/VERIFY/"+sessionID+"/"+otpValue)
-				  .header("content-type", "application/x-www-form-urlencoded")
-				  .asJson();
-			 
-		 JSONObject jsonObject = response.getBody().getObject();
-		 String status = jsonObject.getString("Status");
-		 String details = jsonObject.getString("Details");
-		 log.info(status+" ::: "+details);
-		 jsonList.add(status);
-		 jsonList.add(details);
-		 return jsonList; 
+
+		/*log.info(otpValue + " ::: " + sessionID);
+		String status = null;
+		String details = null;
+		if (otpValue.equals("1234")) {
+			status = "success";
+			details = "OTP Matched";
+		} else {
+			status = "error";
+			details = "Not Matched";
+		}*/
+		jsonList.add(status);
+		jsonList.add(details);
+		return jsonList;
 	}
-	
-	
+
 }

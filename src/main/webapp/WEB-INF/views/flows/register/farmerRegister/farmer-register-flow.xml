@@ -5,53 +5,51 @@
                           http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
 
-	<var name="user" class="com.grow.agriculture.dto.User"/>
-	<var name="userDetails" class="com.grow.agriculture.dto.UserDetails"/>
-		
-		<on-start>
-			<evaluate expression="registerHandler.init()" result="flowScope.registerModel"/>
-		</on-start>
-		
+	<var name="user" class="com.grow.agriculture.dto.User" />
+	<var name="userDetails" class="com.grow.agriculture.dto.UserDetails" />
+
+	<on-start>
+		<evaluate expression="registerHandler.init()" result="flowScope.registerModel" />
+	</on-start>
+
 	<view-state id="farmerRegister" view="flows/register/farmerRegister/farmer-register" model="user">
-		
-	<transition on="profile" to="profile"/>
-	<transition on="submit" to="success"/>
-	<on-exit>
-		<evaluate expression="registerHandler.addUser(flowScope.registerModel, user)" result="flowScope.userDetailsModel"/>
-	</on-exit>
-	
-	</view-state>
-	
-	
-	
-	<view-state id="profile" view="flows/profile/user-profile" model="flowScope.userDetailsModel">
-		<transition on="edit" to="farmerRegister"/>
-		<transition on="submit" to="saveAllData"/>
+		<transition on="checkUser" to="checkUser" />
+		<transition on="terms_conditions" to="termsAndConditions"/>
 		<on-exit>
-		<evaluate expression="registerHandler.addUserDetails(flowScope.registerModel, flowScope.userDetailsModel)"/>
-	</on-exit>
+			<evaluate expression="registerHandler.addUser(flowScope.registerModel, user)" result="flowScope.userDetailsModel" />
+		</on-exit>
 	</view-state>
-	
-	
-	<action-state id="saveAllData">
-		<evaluate expression="registerHandler.saveAll(flowScope.registerModel)"></evaluate>
-		<transition on="success" to="success"/>
-	
+
+	<action-state id="checkUser">
+		<evaluate expression="registerHandler.userExists(flowScope.user)"></evaluate>
+		<transition on="checkUserExists" to="fail"/>
+		<transition on="userNotExists" to="profile"/>
 	</action-state>
 	
-	
-	<view-state id="login" view="flows/success/farmer-login" model="user"/>
-	
-	<view-state id="success" view="flows/register/success" model="flowScope.registerModel"/>
+	<view-state id="profile" view="flows/profile/user-profile" model="flowScope.userDetailsModel">
+		<transition on="edit" to="farmerRegister" />
+		<transition on="submit" to="saveAllData" />
+		<on-exit>
+			<evaluate expression="registerHandler.addUserDetails(flowScope.registerModel, flowScope.userDetailsModel)" />
+		</on-exit>
+	</view-state>
+
+	<action-state id="saveAllData">
+		<evaluate expression="registerHandler.saveAll(flowScope.registerModel)"></evaluate>
+		<transition on="success" to="success" />
+	</action-state>
+
+	<view-state id="success" view="flows/register/success" model="flowScope.registerModel" />
 
 	<end-state id="home" view="externalRedirect:contextRelative:/" />
 	
-<!-- 	<end-state id="success" view="flows/register/success" model="flowScope.registerModel" /> -->
+	<end-state id="fail" view="externalRedirect:contextRelative:/" />
+	
+	<end-state id="termsAndConditions" view="externalRedirect:contextRelative:/register/farmerRegister" />
+
 	
 	<global-transitions>
-
 		<transition on="home" to="home" />
-
 	</global-transitions>
 
 
