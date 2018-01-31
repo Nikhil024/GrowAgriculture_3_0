@@ -29,15 +29,11 @@ public class UserDetails implements Serializable{
 	@Column(name = "first_name")
 	private String firstName;
 	
-	@NotBlank(message = "Please enter last name.")
 	@Column(name = "last_name")
 	private String lastName;
 	
-	@NotBlank(message = "Please enter an address")
 	private String address;
-	@NotBlank(message = "Please enter an city")
 	private String city;
-	@NotBlank(message = "Please enter an Postal Code")
 	private String postalCode;
 	private String aboutMe;
 	

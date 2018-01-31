@@ -17,10 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.AssertTrue;
-<<<<<<< HEAD
 import javax.validation.constraints.NotNull;
-=======
->>>>>>> 283fa99dc1e3c940e84fae5230c23f237b069514
 
 import org.hibernate.annotations.Check;
 import org.hibernate.validator.constraints.Length;
