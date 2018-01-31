@@ -98,10 +98,4 @@ public class SpringConfiguration extends AbstractFlowConfiguration implements We
 		hibernateProperties.put("hibernate.format_sql", "true");
 		return hibernateProperties;
 	}
-	
-	@Bean
-	public UserDao userDao() {
-		return new UserDaoImpl();
-	}
-	
 }

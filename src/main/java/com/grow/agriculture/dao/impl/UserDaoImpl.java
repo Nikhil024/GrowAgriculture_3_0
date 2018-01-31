@@ -7,11 +7,13 @@ import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.grow.agriculture.dao.UserDao;
 import com.grow.agriculture.dto.User;
 
 @Transactional
+@Repository("userDAO")
 public class UserDaoImpl implements UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;

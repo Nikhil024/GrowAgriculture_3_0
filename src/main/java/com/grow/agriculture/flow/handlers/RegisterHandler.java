@@ -48,10 +48,8 @@ public class RegisterHandler {
 		
 		User user = model.getUser();
 		UserDetails userDetails = model.getUserDetails();
-		
 		user.setUserDetails(userDetails);
 		userDetails.setUser(user);
-		
 		userDao.save(user);
 		
 		log.info(user.toString());

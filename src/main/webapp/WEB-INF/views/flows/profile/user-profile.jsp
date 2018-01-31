@@ -26,10 +26,7 @@
     }
     
       $(document).ready(function(){
-<<<<<<< HEAD
     	  $("#termsAndConditions").val("");
-=======
->>>>>>> 283fa99dc1e3c940e84fae5230c23f237b069514
     	  var successTickCode = "<span class='form-control-feedback'><i class='material-icons'>done</i></span>";
     	if(localStorage.getItem("OtpVerified") != null && localStorage.getItem("OtpValue") != null){
     		if(localStorage.getItem("OtpVerified") == "yes"){
@@ -39,12 +36,9 @@
 	    		$("#otpValue").parent().parent().addClass('has-success is-focused');
 	    		$("#otpValue").attr("style","background-color: white;pointer-events: none;");
 	    		$("#otpValue").val(localStorage.getItem("OtpValue"));
-<<<<<<< HEAD
 	    		$("#otpSessionId").val(sessionID);
     			$("#otpValue").val(localStorage.getItem("OtpValue"));
     			$("#otpRetries").val(localStorage.getItem("count"));
-=======
->>>>>>> 283fa99dc1e3c940e84fae5230c23f237b069514
     		}
         }else{
         	if (localStorage.getItem("OtpVerified") == "no"){
@@ -204,22 +198,10 @@
                                 <form:input type="text" path="dateOfBirth" class="form-control datepicker" value="" placeholder="DD/MM/YYYY"/>
                                 <form:errors path="dateOfBirth" cssClass="text-danger" element="p"/>
                              </div>
-<<<<<<< HEAD
 								
 							 <div class="text-center">
                                     <input type="submit" name="_eventId_submit" value="Get Started" class="btn btn-primary btn-round"/>
                              </div>
-=======
-							<div class="text-center">
-                            	<input type="submit" name="_eventId_submit" value="Get Started" class="btn btn-primary btn-round">
-                            </div>
-								<form:hidden path="createdOn" value="${user.createdOn}"/>
-								<form:errors path="createdOn" cssClass="text-danger" element="p"/>
-								<form:hidden path="otpSessionId" value=""/>   
-								<form:errors path="otpSessionId" cssClass="text-danger" element="p"/> 
-								<form:hidden path="otpRetries" value=""/>   
-								<form:errors path="otpRetries" cssClass="text-danger" element="p"/>                   
->>>>>>> 283fa99dc1e3c940e84fae5230c23f237b069514
                         </form:form>
                     </div>
                 </div>
