@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+    
+    <var name="user" class="com.grow.agriculture.dto.User" />
+	<var name="userDetails" class="com.grow.agriculture.dto.UserDetails" />
+	<var name="image" class="com.grow.agriculture.dto.Image" />
+
+	<on-start>
+		<evaluate expression="loginHandler.init()" result="flowScope.loginModel" />
+	</on-start>                
+
+
+	<view-state id="farmerLogin" view="flows/login/farmerLogin/farmer-login" model="user">
+		<transition on="checkUser" to="checkUser"  validate="false"/>
+	</view-state>
+
+	<action-state id="checkUser">
+		<evaluate expression="loginHandler.userExists(flowScope.user)"></evaluate>
+		<transition on="userNotExists" to="fail"/>
+		<transition on="checkUserExists" to="get-user"/>
+	</action-state>
+	
+	<action-state id="get-user">
+		<evaluate expression="loginHandler.getUser(flowScope.user)" result="flowScope.userModel" ></evaluate>
+		<transition on="success" to="dashboard"/>
+	</action-state>
+	
+	<view-state id="dashboard" view="flows/dashboard/farmer-dashboard" model="flowScope.userModel">
+		<transition on="edit" to="farmerRegister" />
+		<transition on="submit" to="saveAllData" />
+	</view-state>
+	
+	<end-state id="logout" view="externalRedirect:contextRelative:/" />
+	
+	<end-state id="fail" view="externalRedirect:contextRelative:/" />
+	
+	<global-transitions>
+		<transition on="home" to="home" />
+	</global-transitions>
+
+
+
+                          
+</flow>

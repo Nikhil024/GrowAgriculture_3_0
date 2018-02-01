@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.grow.agriculture.dao.ImageDao;
 import com.grow.agriculture.dto.Image;
+import com.grow.agriculture.dto.User;
 
 @Transactional
 @Repository("imageDAO")
@@ -16,35 +17,64 @@ public class ImageDaoImpl implements ImageDao {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	private static final String selectQuery = "FROM Image where user_id=:id";
 
 	@Override
 	public boolean save(Image image) {
-		
-		return false;
+		try{
+			sessionFactory.getCurrentSession().persist(image);
+			return true;
+		}catch(Exception e){
+			return false;
+		}
 	}
 
 	@Override
 	public boolean update(Image image) {
-		// TODO Auto-generated method stub
-		return false;
+		try{
+			sessionFactory.getCurrentSession().update(image);
+			return true;
+		}catch(Exception e){
+			return false;
+		}
 	}
 
 	@Override
 	public boolean delete(Image image) {
-		// TODO Auto-generated method stub
-		return false;
+		try{
+			sessionFactory.getCurrentSession().delete(image);
+			return true;
+		}catch(Exception e){
+			return false;
+		}
 	}
 
 	@Override
 	public List<Image> list() {
-		// TODO Auto-generated method stub
-		return null;
+		try{
+			return sessionFactory.getCurrentSession().createQuery("FROM Image", Image.class).getResultList();
+		}catch(Exception e){
+			return null;
+		}
 	}
 
 	@Override
-	public Image get(Image image) {
-		// TODO Auto-generated method stub
-		return null;
+	public Image getProfile(User user) {
+		try{
+			return sessionFactory.getCurrentSession().createQuery(selectQuery, Image.class).setParameter("id", user.getId()).getSingleResult();
+		}catch(Exception e){
+			return null;
+		}
+	}
+	
+	@Override
+	public Image getNotProfile(User user) {
+		try{
+			return sessionFactory.getCurrentSession().createQuery(selectQuery, Image.class).setParameter("id", user.getId()).getSingleResult();
+		}catch(Exception e){
+			return null;
+		}
 	}
 
 }

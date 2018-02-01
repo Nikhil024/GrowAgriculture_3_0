@@ -39,7 +39,7 @@
 		<transition on="success" to="success" />
 	</action-state>
 
-	<view-state id="success" view="flows/register/success" model="flowScope.registerModel" />
+	<end-state id="success" view="externalRedirect:contextRelative:/login/farmerLogin" />
 
 	<end-state id="home" view="externalRedirect:contextRelative:/" />
 	

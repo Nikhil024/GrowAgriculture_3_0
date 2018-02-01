@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,6 +16,9 @@ import com.grow.agriculture.dto.User;
 @Transactional
 @Repository("userDAO")
 public class UserDaoImpl implements UserDao {
+	private static final Logger log = Logger.getLogger(UserDaoImpl.class);
+	
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -58,10 +62,12 @@ public class UserDaoImpl implements UserDao {
 	
 	@Override
 	public User get(String phoneNumber){
+		log.info("PHONE number::: "+phoneNumber);
 		String selectQuery = "FROM User WHERE phone_number = :phoneNumber";
 		try{
 		return sessionFactory.getCurrentSession().createQuery(selectQuery, User.class).setParameter("phoneNumber", phoneNumber).getSingleResult();
 		}catch(NoResultException  e){
+			e.printStackTrace();
 			return null;
 		}
 	}
