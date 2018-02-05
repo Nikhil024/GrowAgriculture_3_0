@@ -14,7 +14,7 @@
 
 	<view-state id="farmerRegister" view="flows/register/farmerRegister/farmer-register" model="user">
 		<transition on="checkUser" to="checkUser" />
-		<transition on="terms_conditions" to="termsAndConditions"/>
+		<transition on="terms_conditions" to="termsAndConditions" validate="false" />
 		<on-exit>
 			<evaluate expression="registerHandler.addUser(flowScope.registerModel, user)" result="flowScope.userDetailsModel" />
 		</on-exit>

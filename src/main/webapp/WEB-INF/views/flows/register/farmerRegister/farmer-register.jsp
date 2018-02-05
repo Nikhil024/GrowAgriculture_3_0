@@ -113,7 +113,7 @@
                                                     <span class="check"></span>
                                                 </span>
                                                 I agree to the
-                                                <a href="#something">terms and conditions</a>.
+                                                	<a data-toggle="modal" data-target="#noticeModal" >terms and conditions</a>.
                                             </label>
                                         </div>
                                         <form:errors path="termsAndConditions" cssClass="text-danger" element="p"/>
