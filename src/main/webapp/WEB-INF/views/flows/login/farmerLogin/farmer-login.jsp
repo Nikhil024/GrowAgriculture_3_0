@@ -18,41 +18,27 @@
 
 <body class="login-page ">
 <jsp:include page="../../../navbar.jsp"></jsp:include>
-    <div class="page-header header-filter" style="background-image: url(&apos;../assets/img/bg7.jpg&apos;); background-size: cover; background-position: top center;">
+    <div class="page-header header-filter" style="background-image: url(/agriculture/resources/img/farmerBackgroundImage.jpg;); background-size: cover; background-position: top center;">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6 ml-auto mr-auto">
                     <div class="card card-signup">
                         <form:form class="form" method="post" modelAttribute="user">
                             <div class="card-header card-header-primary text-center">
-                                <h4 class="card-title">Log in</h4>
-                                <!-- <div class="social-line">
-                                    <a href="#pablo" class="btn btn-just-icon btn-link">
-                                        <i class="fa fa-facebook-square"></i>
-                                    </a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link">
-                                        <i class="fa fa-google-plus"></i>
-                                    </a>
-                                </div> -->
+                                 <div class="social-line">
+                                   <h4 class="card-title">LOGIN</h4>
+                                   <br/>
+                                </div>
                             </div>
                             <div class="card-body">
+                            <br/>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">face</i>
                                     </span>
                                     <form:input path="phoneNumber" type="text" class="form-control" placeholder="Phone Number"/>
                                 </div>
-                                <%-- <form:errors path="phoneNumber" cssClass="text-danger" element="p"/>
-                                <form:errors path="password" cssClass="text-danger" element="p"/>
-                                <form:errors path="confirmPassword" cssClass="text-danger" element="p"/>
-                                <form:errors path="termsAndConditions" cssClass="text-danger" element="p"/>
-                                <form:errors path="password" cssClass="text-danger" element="p"/>
-                                <form:errors path="password" cssClass="text-danger" element="p"/>
-                                <form:errors path="password" cssClass="text-danger" element="p"/>
-                                <form:errors path="password" cssClass="text-danger" element="p"/> --%>
+                                <form:errors path="phoneNumber" cssClass="text-danger" element="p"/>
                                 
                                 <div class="input-group">
                                     <span class="input-group-addon">
@@ -60,9 +46,10 @@
                                     </span>
                                     <form:input path="password" type="password" class="form-control" placeholder="Password"/>
                                 </div>
+                                 <form:errors path="password" cssClass="text-danger" element="p"/>
                             </div>
                             <div class="footer text-center">
-                                <input type="submit" name="_eventId_checkUser" class="btn btn-primary btn-link btn-wd btn-lg">Go to Dashboard</a>
+                                <input type="submit" name="_eventId_checkUser" value="login" class="btn btn-primary btn-link btn-wd btn-lg">
                             </div>
                         </form:form>
                     </div>

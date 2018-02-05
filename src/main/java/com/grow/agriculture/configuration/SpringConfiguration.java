@@ -13,8 +13,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -30,10 +33,11 @@ import com.grow.agriculture.dao.impl.UserDaoImpl;
 
 @EnableWebMvc // mvc:annotation-driven
 @Configuration
+@EnableRedisHttpSession
 @PropertySource(value = { "classpath:jdbc.properties" })
 @EnableTransactionManagement
 @ComponentScan({ "com.grow.agriculture.controllers" })
-public class SpringConfiguration extends AbstractFlowConfiguration implements WebMvcConfigurer {
+public class SpringConfiguration implements WebMvcConfigurer {
 	private static final Logger log = Logger.getLogger(SpringConfiguration.class);
 
 	@Autowired
@@ -98,4 +102,22 @@ public class SpringConfiguration extends AbstractFlowConfiguration implements We
 		hibernateProperties.put("hibernate.format_sql", "true");
 		return hibernateProperties;
 	}
+	
+	/*@Bean
+	public LettuceConnectionFactory connectionFactory() {
+    	LettuceConnectionFactory lettuceConnectionFactory = new LettuceConnectionFactory();
+    	lettuceConnectionFactory.setPort(6379);
+    	lettuceConnectionFactory.setHostName("localhost");
+		return lettuceConnectionFactory;
+	}*/
+	
+	@Bean
+    public JedisConnectionFactory connectionFactory() {
+		JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
+		jedisConnectionFactory.setHostName("locahost");
+		jedisConnectionFactory.setPort(6379);
+        return new JedisConnectionFactory();
+    }
+	
+	
 }

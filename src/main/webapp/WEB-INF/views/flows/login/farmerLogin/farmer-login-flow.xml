@@ -14,7 +14,7 @@
 
 
 	<view-state id="farmerLogin" view="flows/login/farmerLogin/farmer-login" model="user">
-		<transition on="checkUser" to="checkUser"  validate="false"/>
+		<transition on="checkUser" to="checkUser"/>
 	</view-state>
 
 	<action-state id="checkUser">
