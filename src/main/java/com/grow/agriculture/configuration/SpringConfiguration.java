@@ -13,10 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
-<<<<<<< HEAD
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-=======
->>>>>>> 05db90cd606a351d18eb4bc5fe35fc02f06664fd
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -106,7 +103,6 @@ public class SpringConfiguration implements WebMvcConfigurer {
 		return hibernateProperties;
 	}
 	
-<<<<<<< HEAD
 	/*@Bean
 	public LettuceConnectionFactory connectionFactory() {
     	LettuceConnectionFactory lettuceConnectionFactory = new LettuceConnectionFactory();
@@ -124,13 +120,4 @@ public class SpringConfiguration implements WebMvcConfigurer {
     }
 	
 	
-=======
-	@Bean
-	public LettuceConnectionFactory connectionFactory() {
-    	LettuceConnectionFactory lettuceConnectionFactory = new LettuceConnectionFactory();
-    	lettuceConnectionFactory.setPort(6379);
-    	lettuceConnectionFactory.setHostName("172.30.55.44");
-		return lettuceConnectionFactory;
-	}
->>>>>>> 05db90cd606a351d18eb4bc5fe35fc02f06664fd
 }

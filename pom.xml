@@ -283,7 +283,6 @@
 			<version>2.0.11</version>
 		</dependency>
 
-<<<<<<< HEAD
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-pool2</artifactId>
@@ -297,8 +296,6 @@
 		</dependency>
 
 
-=======
->>>>>>> 05db90cd606a351d18eb4bc5fe35fc02f06664fd
 
 	</dependencies>
 	<build>
