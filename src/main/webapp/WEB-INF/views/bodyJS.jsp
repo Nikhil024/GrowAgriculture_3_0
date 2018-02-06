@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<script src="<spring:url value="/resources/js/core/jquery.min.js"/>"></script>
+    <script src="<spring:url value="/resources/js/core/jquery.min.js"/>"></script>
     <script src="<spring:url value="/resources/js/core/popper.min.js"/>"></script>
     <script src="<spring:url value="/resources/js/bootstrap-material-design.min.js"/>"></script>
     <!--  Plugin for Date Time Picker and Full Calendar Plugin-->

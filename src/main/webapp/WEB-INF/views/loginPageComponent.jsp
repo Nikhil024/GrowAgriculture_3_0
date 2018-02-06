@@ -20,10 +20,15 @@
 <jsp:include page="navbar.jsp"></jsp:include>
     <div class="page-header header-filter" style="background-image: url(/agriculture/resources/img/${backgroundImage};); background-size: cover; background-position: top center;">
         <div class="container">
+        	
             <div class="row">
                 <div class="col-md-4 col-sm-6 ml-auto mr-auto">
+                
+           <jsp:include page="alertComponent.jsp"/>
+                
+                
                     <div class="card card-signup">
-                        <form:form class="form" action="<spring:url value="/login/${userType}Login"/>" method="post" modelAttribute="user">
+                        <form class="form" action="<spring:url value="/login/${userType}Login"/>" method="post">
                             <div class="card-header card-header-primary text-center">
                                  <div class="social-line">
                                    <h4 class="card-title">LOGIN</h4>
@@ -36,23 +41,22 @@
                                     <span class="input-group-addon">
                                         <i class="material-icons">face</i>
                                     </span>
-                                    <form:input path="phoneNumber" type="text" class="form-control" placeholder="Phone Number"/>
+                                    <input name="phoneNumber" type="text" class="form-control" placeholder="Phone Number"/>
                                 </div>
-                                <form:errors path="phoneNumber" cssClass="text-danger" element="p"/>
                                 
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">lock_outline</i>
                                     </span>
-                                    <form:input path="password" type="password" class="form-control" placeholder="Password"/>
+                                    <input name="password" type="password" class="form-control" placeholder="Password"/>
                                 </div>
                                  <form:errors path="password" cssClass="text-danger" element="p"/>
                             </div>
                             <div class="footer text-center">
                                 <input type="submit" name="_eventId_checkUser" value="login" class="btn btn-primary btn-link btn-wd btn-lg">
                             </div>
-                        </form:form>
-                    </div>
+                        </form>
+					</div>
                 </div>
             </div>
         </div>

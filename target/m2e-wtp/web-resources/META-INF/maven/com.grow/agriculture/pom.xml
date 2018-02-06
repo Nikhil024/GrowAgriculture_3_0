@@ -244,14 +244,11 @@
 			<version>1.5.0.RELEASE</version>
 		</dependency>
 
-<<<<<<< HEAD
-=======
 		<dependency>
 			<groupId>biz.paluch.redis</groupId>
 			<artifactId>lettuce</artifactId>
 			<version>3.5.0.Final</version>
 		</dependency>
->>>>>>> 05db90cd606a351d18eb4bc5fe35fc02f06664fd
 
 		<dependency>
 			<groupId>io.netty</groupId>
@@ -283,7 +280,6 @@
 			<version>2.0.11</version>
 		</dependency>
 
-<<<<<<< HEAD
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-pool2</artifactId>
@@ -297,8 +293,6 @@
 		</dependency>
 
 
-=======
->>>>>>> 05db90cd606a351d18eb4bc5fe35fc02f06664fd
 
 	</dependencies>
 	<build>
